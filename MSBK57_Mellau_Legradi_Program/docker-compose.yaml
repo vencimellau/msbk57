@@ -1,0 +1,40 @@
+version: '3.10.0'
+
+services:
+# auth SERVICE
+  auth_service:
+    build: ./auth_service
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./auth_service/:/app/
+    ports:
+      - 8001:8000
+
+# ETL SERVICE
+  etl_service:
+    build: ./etl_service
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./etl_service/:/app/
+    ports:
+      - 8002:8000
+
+# machine_learning SERVICE
+  machine_learning_service:
+    build: ./machine_learning_service
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./machine_learning_service/:/app/
+    ports:
+      - 8003:8000
+
+# vizualization SERVICE
+  vizualization_service:
+    build: ./vizualization_service
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./vizualization_service/:/app/
+    ports:
+      - 8004:8000
+
+
